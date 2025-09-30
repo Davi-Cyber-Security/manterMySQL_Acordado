@@ -16,5 +16,5 @@ async function manterConexao(){
     }
 }
 
-setInterval(manterConexao, 1000 * 60 * 10);
+setInterval(manterConexao, 1000 * 60 * 5);
 manterConexao();
