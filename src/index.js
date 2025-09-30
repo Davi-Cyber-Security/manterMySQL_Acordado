@@ -1,20 +1,15 @@
 import express from 'express';
 
-import {getConnection} from "./connection/conexao.js";
+import { manterConexao } from './service/servico.js';
+import router from './routes/rotas.routes.js';
 
 const app = express();
 
-
-async function manterConexao(){
-    try{
-        const Conection = await getConnection();
-        await Conection.query('SELECT 1');
-            console.log(`[${new Date().toISOString()}] Ping enviado com sucesso!`);
-            await Conection.end();
-    }catch(err){
-        console.log(`[${new Date().toISOString()}] Erro: ${err.message}`);
-    }
-}
+app.use('/', router);
 
 setInterval(manterConexao, 1000 * 60 * 5);
 manterConexao();
+
+app.listen(3000, () => {
+    console.log('Servidor rodando na porta 3000');
+});
