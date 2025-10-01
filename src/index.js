@@ -11,15 +11,9 @@ const PORT = process.env.PORT || 3000;
 
 app.use('/', router);
 
-app.use('*', (req, res) => {
-    res.status(404).send('Página não encontrada!');
-});
-
-setInterval(manterConexao, 1000 * 60 * 5);
-manterConexao();
-
-
-
 app.listen(PORT, '0.0.0.0', () => {
     console.log(`Servidor rodando na porta ${PORT}`);
+
+    setInterval(manterConexao, 1000 * 60 * 5);
+    manterConexao();
 });
